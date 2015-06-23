@@ -16,7 +16,7 @@
 @interface Contender : NSObject
 
 - (instancetype)initWithName:(NSString *)name;
-    
+
 - (void)addVote;
 - (NSInteger)votesReceived;
 - (NSString *)name;
@@ -87,9 +87,9 @@
 }
 
 - (void)addContender:(Contender *)contender {
-   if (_listOfContenders == nil) {
-       _listOfContenders = [[NSMutableArray alloc] init];
-   }
+    if (_listOfContenders == nil) {
+        _listOfContenders = [[NSMutableArray alloc] init];
+    }
     [_listOfContenders addObject:contender];
 }
 
@@ -146,7 +146,7 @@
             printf("Contender does not exist...\n");
         }
     }
-        
+    
 }
 
 @end
@@ -205,6 +205,14 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        Election* election = [[Election alloc]init];
+        Contender* c = [[Contender alloc]init];
+        Contender* c2 = [[Contender alloc]init];
+        Contender* c3 = [[Contender alloc]init];
+        
+        election.electionName = @"The Election";
+        [election.listOfContenders addObject:c];
+        
         
     }
     return 0;
