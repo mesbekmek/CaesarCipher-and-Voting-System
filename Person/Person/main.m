@@ -55,7 +55,7 @@
 }
 //Write a method called checkSameCity which accepts one parameter of type Person * and checks if they live in the same city. The function should return a boolean value.
 -(BOOL)checkSameCity:(Person *)person{
-    if(self.city == person.city){
+    if([[self city] isEqualToString:[person city]]){
         return YES;
     }
     return NO;
@@ -73,6 +73,31 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        Person* carl = [[Person alloc]init];
+        
+        Person* lisa = [[Person alloc]init];
+        
+        [lisa setCity:@"Gotham"];
+        
+        [carl setName:@"Carl"];
+        
+        [carl setCity:@"Gotham"];
+        
+        [carl setPhoneNumber:@"234-843-2333"];
+        
+        
+        Person *child = [carl registerChild];
+        
+        BOOL result = [carl checkSameCity:lisa];
+        
+        NSLog(@"%hhd",result);
+        
+        NSLog(@"%@",[carl name]);
+        NSLog(@"%@",[carl city]);
+        NSLog(@"%@",[carl phoneNumber]);
+        
+        NSLog(@"%@",[child phoneNumber]);
+        
         
     }
     return 0;

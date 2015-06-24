@@ -20,6 +20,7 @@
 - (void)addVote;
 - (NSInteger)votesReceived;
 - (NSString *)name;
+- (void)setName:(NSString *)name;
 
 @end
 
@@ -210,9 +211,18 @@ int main(int argc, const char * argv[]) {
         Contender* c2 = [[Contender alloc]init];
         Contender* c3 = [[Contender alloc]init];
         
-        election.electionName = @"The Election";
-        [election.listOfContenders addObject:c];
+        NSLog(@"%@",[c name]);
         
+        [election setElectionName:@"The Election"];
+        [election addContender:c];
+        [election addContender:c2];
+        [election addContender:c3];
+        
+        ElectionManager *em = [[ElectionManager alloc]init];
+        [em manage:election];
+        [em initiatePolling];
+        
+        [em displayResults];
         
     }
     return 0;
