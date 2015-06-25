@@ -204,38 +204,42 @@
 @end
 
 @interface VotingSimulator : NSObject
-
+-(void) simulate;
 @end
 @implementation VotingSimulator
-
+-(void) simulate{
+    
+    Election* election = [[Election alloc]init];
+    Contender* c = [[Contender alloc]init];
+    Contender* c2 = [[Contender alloc]init];
+    Contender* c3 = [[Contender alloc]init];
+    
+    [c initWithName:@"Carlos"];
+    [c2 initWithName:@"Carl"];
+    [c3 initWithName:@"Steven"];
+    
+    
+    [election setElectionName:@"The Election"];
+    [election addContender:c];
+    [election addContender:c2];
+    [election addContender:c3];
+    
+    
+    
+    
+    ElectionManager *em = [[ElectionManager alloc]init];
+    [em manage:election];
+    [em initiatePolling];
+    
+    [em displayResults];
+}
 
 @end
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        Election* election = [[Election alloc]init];
-        Contender* c = [[Contender alloc]init];
-        Contender* c2 = [[Contender alloc]init];
-        Contender* c3 = [[Contender alloc]init];
-        
-        [c initWithName:@"Carlos"];
-        [c2 initWithName:@"Carl"];
-        [c3 initWithName:@"Steven"];
-        
-        
-        [election setElectionName:@"The Election"];
-        [election addContender:c];
-        [election addContender:c2];
-        [election addContender:c3];
-        
-        
-        
-        
-        ElectionManager *em = [[ElectionManager alloc]init];
-        [em manage:election];
-        [em initiatePolling];
-        
-        [em displayResults];
+        VotingSimulator *vs = [[VotingSimulator alloc]init];
+        [vs simulate];
         
     }
     return 0;
