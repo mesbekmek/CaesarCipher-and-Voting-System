@@ -43,8 +43,9 @@
 - (NSString *)decode:(NSString *)string offset:(int)offset {
     return [self encode:string offset: (26 - offset)];
 }
-//Being amateur codebreakers, we want to know if two distinct looking ciphers correspond to the same input message. Write a method called codeBreaker, which accepts two cipher strings as paramaters and returns a boolean value which tells us whether they are actually the same input message encoded using two different offsets. hint: the maximum offset is 25
+
 - (BOOL)codeBreaker: (NSString *)string word:(NSString*)string2{
+    //Method 1
 //    for (int i=1; i<=25; i++){
 //        for(int j=1;j<=25;j++){
 //            if([[self decode:string offset:i] isEqualToString:[self decode:string2 offset:j]]){
@@ -52,13 +53,12 @@
 //            }
 //        }
 //    }
+    //Method 2 thanks to V's suggestion
     for(int i=1;i<25;i++){
         if([string isEqualToString:[self encode:string2 offset:i]]){
             return 1;
         }
     }
-    
-    
     return 0;
 }
 @end
@@ -66,10 +66,10 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         CaesarCipher * ceasarCipher = [[CaesarCipher alloc]init];
-        NSString *mesfin = @"mike";
-        NSString *mesfin2 = @"mike";
-        NSString *result =[ceasarCipher encode:mesfin offset:2];
-        NSString *result2 = [ceasarCipher encode:mesfin2 offset:7];
+        NSString *string = @"mike";
+        NSString *string2 = @"mesfin";
+        NSString *result =[ceasarCipher encode:string offset:2];
+        NSString *result2 = [ceasarCipher encode:string2 offset:7];
         
         NSLog(@"This is the first string, %@ and this is the second %@",result,result2);
         
@@ -77,11 +77,5 @@ int main(int argc, const char * argv[]) {
         NSLog(@"\n");
         
         NSLog(@"%hhd",result3);
-        
-//        NSString *decode = [ceasarCipher decode:mesfin offset:2];
-//        NSString *decode2 =[ceasarCipher decode:mesfin offset:7];
-//        
-//        NSLog(@"This is the first string, %@ and this is the second %@",decode,decode2);
-        
     }
 }

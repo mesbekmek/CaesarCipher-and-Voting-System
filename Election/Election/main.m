@@ -11,6 +11,7 @@
 // forward declarations
 @class Contender;
 @class Election;
+@class VotingSimulator;
 
 // Contender class
 @interface Contender : NSObject
@@ -20,7 +21,7 @@
 - (void)addVote;
 - (NSInteger)votesReceived;
 - (NSString *)name;
-- (void)setName:(NSString *)name;
+
 
 @end
 
@@ -202,7 +203,13 @@
 
 @end
 
+@interface VotingSimulator : NSObject
 
+@end
+@implementation VotingSimulator
+
+
+@end
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -211,12 +218,18 @@ int main(int argc, const char * argv[]) {
         Contender* c2 = [[Contender alloc]init];
         Contender* c3 = [[Contender alloc]init];
         
-        NSLog(@"%@",[c name]);
+        [c initWithName:@"Carlos"];
+        [c2 initWithName:@"Carl"];
+        [c3 initWithName:@"Steven"];
+        
         
         [election setElectionName:@"The Election"];
         [election addContender:c];
         [election addContender:c2];
         [election addContender:c3];
+        
+        
+        
         
         ElectionManager *em = [[ElectionManager alloc]init];
         [em manage:election];
