@@ -203,10 +203,15 @@
 
 @end
 
+// Voting Simulator Class
 @interface VotingSimulator : NSObject
+
 -(void) simulate;
+
 @end
+
 @implementation VotingSimulator
+
 -(void) simulate{
     
     Election* election = [[Election alloc]init];
